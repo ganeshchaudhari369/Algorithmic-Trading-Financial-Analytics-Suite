@@ -1,0 +1,60 @@
+Algorithmic Trading & Financial Analytics Suite
+
+📈 Overview
+
+This suite is a comprehensive, R-based quantitative analysis and algorithmic trading platform. Designed for robust financial market analysis, it seamlessly integrates historical data ingestion, technical indicator calculation, statistical time-series forecasting, and strategy backtesting using standalone R scripts.
+
+Whether you are conducting academic financial research, evaluating algorithmic trading models, or visualizing market volatility, this toolset provides a fully transparent and scriptable framework for data-driven trading decisions.
+
+✨ Key Features
+
+Automated Data Pipeline: Dynamically fetch historical stock data via Yahoo Finance and compute foundational technical indicators (SMA, Bollinger Bands, RSI, MACD, Volatility).
+
+Algorithmic Backtesting Engine: Test standard quantitative strategies (SMA Crossovers, MACD, RSI) against historical data with detailed trade logging, performance comparisons (vs. Buy-and-Hold), and key metric generation (Sharpe Ratio, Win Rate, Max Drawdown).
+
+Advanced Time-Series Forecasting: Built-in statistical modules for STL decomposition, Stationarity testing (ADF), and automated ARIMA model fitting for 60-day price predictions with confidence intervals.
+
+Professional Visualization Suite: Generate over a dozen publication-ready static financial charts (ggplot2) and export them locally, or explore data dynamically using standalone plotly and dygraphs HTML widgets in RStudio.
+
+📂 Project Structure
+
+1. Core Engine
+
+algo_engine.R: The quantitative backend. Contains logic for data ingestion, technical indicator calculations, and the core backtesting execution loop.
+
+2. Analysis Modules
+
+part1_setup_download.R: Initialization script to download data, compute indicators, and prepare the local trent_data.rds dataset for downstream use.
+
+part2_visualizations.R: Batch-generates 13 high-resolution static financial charts and exports them to a local plots/ directory.
+
+part3_arima_decomposition.R: Performs rigorous time-series analysis, residual diagnostics, and fits optimal ARIMA forecasting models.
+
+interactive_plots.R: A self-contained script for rendering dynamic, interactive Plotly and Dygraph charts directly within the RStudio Viewer for rapid exploratory data analysis.
+
+🚀 Getting Started
+
+Prerequisites
+
+Ensure you have an R environment configured (RStudio is highly recommended) with the following core packages installed:
+
+install.packages(c("dplyr", "tidyr", "xts", "zoo", "lubridate", 
+                   "forecast", "tseries", "ggplot2", "scales", 
+                   "quantmod", "TTR", "plotly", "dygraphs", "gridExtra"))
+
+
+Execution Workflow
+
+Run the scripts in the following order to replicate the full analysis pipeline:
+
+Initialize Data: Run part1_setup_download.R. This will download the historical stock data (defaulting to Trent Ltd.), calculate moving averages, RSI, and MACD, and save it to trent_data.rds.
+
+Generate Static Reports: Run part2_visualizations.R. This will read the generated .rds file and save 13 professional financial charts (candlesticks, volume metrics, heatmaps, volatility bands) into a new plots/ folder.
+
+Statistical Forecasting: Run part3_arima_decomposition.R to run ADF stationarity tests, decompose the time series, plot ACF/PACF, and project a 60-day ARIMA forecast.
+
+Interactive Exploratory Data Analysis (EDA): Run interactive_plots.R to view zoomable, interactive charts (RSI, MACD, and Forecasts) directly within the RStudio Viewer pane.
+
+⚙️ Strategy Backtesting Customization
+
+To evaluate different trading logic, you can source algo_engine.R in your R console and call the backtest_strategy() function, passing in your historical dataset, starting capital, transaction costs, and preferred strategy (e.g., "SMA Crossover", "RSI Strategy", or "MACD Crossover").
